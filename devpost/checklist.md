@@ -9,7 +9,7 @@ Build mode: fast
 
 ## Slices
 
-- [ ] **1. Explore eight destinations and book a fictional holiday**
+- [x] **1. Explore eight destinations and book a fictional holiday**
   Becomes usable: Browse and search the eight planets, open a destination profile, and reveal its fictional itinerary, packing advice, and survival outlook in the approved Far Shores editorial design.
   Why now: Proves the unique holiday-learning idea immediately and gives early feedback on the content and visual direction. Bootstrapping and factual research support a usable journey rather than separate setup tasks.
   PRD ref: `prd.md > The Core Journey`, `Browse and Search`, `Read Planet Profiles`, `Book and Reveal the Holiday Verdict`, `Look and Feel`.
@@ -75,3 +75,5 @@ Activity mode: To be selected from the finished project's evidence and learner p
 
 - Updated slice 1 styling from the learner's three Far Shores references: serif magazine cover, bold grid and profile typography, near-black/off-white/orange palette, decorative orbital diagrams, tinted photographic planet spheres, and text-left/image-right desktop profiles. Updated PRD/spec to match. Kept eight planets and existing calculations; reference-only prices, gravity tools, comparisons, and alternate destinations are outside this styling request. Awaiting learner retry of the revised appearance before completing the early checkpoint.
 - Verified the styling revision: all 11 existing tests and production build pass; desktop and 390px phone cover/grid/profile layouts inspected without horizontal overflow. Search and booking still work; the profile's holiday anchor retains the selected destination. Browser console has no errors or warnings. No commit yet: early-checkpoint feedback on the revised appearance is pending.
+
+- Slice 2 verified: 29 tests pass (outside the sandbox after its temporary-cache access failed); TypeScript/production build pass. Browser checks covered required/invalid fields with retained draft, minimal custom entry, exact missing-details booking warning, saved hash refresh, trimmed mixed-case search, and Cancel. Replaced deferred navigation focus with layout-time focus after a fast-input browser check exposed a focus race. Storage tests cover corrupt/unsupported snapshots, blocked access and quota failures.
