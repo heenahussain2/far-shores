@@ -1,0 +1,77 @@
+---
+doc: checklist
+status: approved
+---
+
+# Far Shores — Build Checklist
+
+Build mode: fast
+
+## Slices
+
+- [ ] **1. Explore eight destinations and book a fictional holiday**
+  Becomes usable: Browse and search the eight planets, open a destination profile, and reveal its fictional itinerary, packing advice, and survival outlook in the approved Far Shores editorial design.
+  Why now: Proves the unique holiday-learning idea immediately and gives early feedback on the content and visual direction. Bootstrapping and factual research support a usable journey rather than separate setup tasks.
+  PRD ref: `prd.md > The Core Journey`, `Browse and Search`, `Read Planet Profiles`, `Book and Reveal the Holiday Verdict`, `Look and Feel`.
+  Spec ref: `spec.md > Stack`, `Where It Runs and How Someone Tries It`, `Look and Feel`, `Components > App Shell and Navigation`, `Destination Catalogue and Planet Card`, `Planet Profile and Planet Image`, `Holiday Reveal`, `Journey and Validation Utilities`, `Initial Content and Assets`, `Data Model`, `File Structure`.
+  Build: Set up React/TypeScript/Vite and focused Vitest checks in the existing folder, preserving curriculum and plans. Add build-output ignores, startup scripts, README, typed seed records, verified factual content and credited bundled images, hash navigation, search, profiles, shared journey formatting, placeholder images, and the booking reveal. Use the approved reference-distance convention and fictional speed; document facts, images, and rounding in CONTENT_SOURCES.md. Start with the bundled catalogue in memory; editing follows later.
+  Verify (mechanical): Run npm run test for known/zero/unknown/invalid journey values and missing-trip detection; run npm run build. Start at localhost:5173 and inspect all eight cards, partial/case-insensitive search and clear/no-results, profile order and estimate notes, Earth zero, booking without duplicate panels, hash navigation/unknown IDs, image fallback, and desktop/narrow layouts. Verify source links and credits against seed content.
+  Learner check: Run npm run dev and open http://localhost:5173/. Search for a planet, open it, read its profile, and book the package; try Earth too. Describe how the look, reading flow, and holiday verdict compare with your idea.
+  Commit: `Build destination browsing and fictional holiday itineraries`
+
+- [ ] **2. Add your own destinations and keep them after refresh**
+  Becomes usable: Create a planet with just a name and description, find it in search, open its profile, and book it with the missing-details warning. Saved additions survive refresh in this browser.
+  Why now: Extends the proven travel journey to personal learning and tests the storage boundary before adding edits to existing destinations.
+  PRD ref: `prd.md > Add and Edit Planets`, `Read Planet Profiles`, `Book and Reveal the Holiday Verdict`, `States and Boundaries`.
+  Spec ref: `spec.md > Components > Planet Entry Form`, `Catalogue Repository`, `Journey and Validation Utilities`, `Data Model`, `Important Failure Modes`.
+  Build: Add the full-field creation form with required-field and numeric/URL validation, unknown optional fields, live journey preview, Save/Cancel, and stable UUIDs. Implement the asynchronous repository, validated versioned localStorage snapshot, and catalogue hook. Write before updating saved UI state; retain drafts on failed saves. Preserve invalid stored snapshots and provide a visible read-only seed fallback. Keep localStorage calls out of UI components.
+  Verify (mechanical): Run npm run test for minimal/invalid form inputs, blank versus zero numbers, URL rules, storage round-trip/no duplicate seeds, unsupported/corrupt snapshots, and blocked/quota errors with injected storage; run npm run build. In the browser add a minimal entry, find and book it with the exact warning, refresh its hash route, cancel another addition, and try invalid inputs without losing the draft. Confirm only saved changes appear and persistence is reported accurately.
+  Learner check: Add an imagined destination with only a name and description, find it through search, and book it. Refresh and confirm it remains available with optional details marked Unknown; try cancelling another entry.
+  Commit: `Add custom destinations with validated browser persistence`
+
+- [ ] **3. Edit destinations and complete their travel details**
+  Becomes usable: Edit any initial or custom destination, change its image, distance, cruising speed, and travel advice, then save and refresh. Completing missing trip information removes its warning.
+  Why now: Completes the learning-maintenance loop on top of the verified form and persistence behavior, then checks the integrated proof of concept.
+  PRD ref: `prd.md > Add and Edit Planets`, `Book and Reveal the Holiday Verdict`, `States and Boundaries`, `What We're Building`.
+  Spec ref: `spec.md > Components > Planet Entry Form`, `App Shell and Navigation`, `Catalogue Repository`, `Journey and Validation Utilities`, `Verification Approach`, `Important Failure Modes`.
+  Build: Reuse the form for edits by stable ID, preserve unchanged seed image paths, retain saved values on Cancel, clear stale booking reveals after edits, and show accessible save/error feedback. Finish integrated keyboard, narrow-layout, field-error, image fallback, and storage-recovery behavior. Update startup and demo documentation to match the finished app.
+  Verify (mechanical): Run npm run test and npm run build. In the browser edit a seed and a custom entry, verify card/profile consistency and refreshed persistence, test duplicate names without overwriting IDs, Cancel, changed distance/speed with matching profile/reveal estimates, zero and cleared values, invalid image URLs and broken-image fallback. Complete missing trip fields and confirm the warning disappears; simulate failed saves and corrupt storage without false success or data overwrite. Check the full PRD acceptance journey with keyboard and desktop/narrow layouts; inspect the repository boundary in code.
+  Learner check: Edit your added planet with distance, speed, packing advice, and survival details; save, book, and refresh. Edit an initial planet, try Cancel, and explore the complete app for anything broken, confusing, or worth refining.
+  Commit: `Complete editable destination profiles and integrated journey checks`
+
+## Hands-on Checkpoints
+
+- [x] Early usable behavior explored — after slice 1, before committing it and building the addition/editing flows
+- [ ] Final kick-the-tires exploration and feedback completed — after slice 3 verification; may share its learner-check session
+
+Learn mode uses each slice's learner check before its commit. Fast mode pauses for early feedback and final exploration; additional checks are available when useful.
+
+Slice 1 checkpoint: learner accepted the revised appearance and navigation and requested the next stage. All 11 journey/risk tests pass; TypeScript and production build pass. Browser checks passed for all eight bundled images, trimmed mixed-case search, no-results/clear, profile reading order and estimate notes, consistent Mars profile/reveal estimates, Earth zero, repeated booking without duplicates, unknown IDs, and keyboard focus. A temporarily missing Mercury image verified card/profile placeholder behavior; the real image reference was restored. Desktop and 390px viewport layouts inspected without horizontal overflow. Local dev server is running at http://localhost:5173/. Add/edit and persistence remain planned for slices 2–3.
+
+## Final Review
+
+- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+
+Record agreed fixes here as unchecked items. Verify and commit each fix, then have the learner retry affected behavior before marking it complete. No review outcome recorded yet.
+
+## Code Tour and App Map
+
+- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+
+Activity and evidence: Not started. Connect one actual planning or verification decision to the learner's goal of finishing personal projects.
+Route and stops: Select actual finished-code locations during the wrap-up.
+Edit outcome: Not yet offered.
+Reflection: Not yet offered; personal reflection belongs only in the ignored learner profile.
+Activity mode: To be selected from the finished project's evidence and learner preference.
+
+## Revisions
+
+- Added the requested “Choose your shore ↓” button below the catalogue introduction. It scrolls to the grid heading without changing routes, respects reduced motion, and places keyboard focus so the next Tab reaches search. Production build passes; desktop/mobile scrolling, focus, and narrow-width overflow checked.
+
+- Learner requested a separate “Choose your shore” page and a smoother transition from the cover. Split LandingCover from DestinationCatalogue, added the dedicated #/destinations route, updated header/profile links and planning docs, and added a short CSS fade-and-slide page transition with reduced-motion handling. Slice 1 remains at the early feedback checkpoint.
+- Navigation verification passed for cover/catalogue separation, direct catalogue refresh, browser Back, returning from a profile with the search query retained, and rapid successive links. Replaced the initially tried native snapshot transition with a 320ms CSS entrance after browser checks showed quick clicks could be swallowed. Existing tests and production build pass.
+
+- Updated slice 1 styling from the learner's three Far Shores references: serif magazine cover, bold grid and profile typography, near-black/off-white/orange palette, decorative orbital diagrams, tinted photographic planet spheres, and text-left/image-right desktop profiles. Updated PRD/spec to match. Kept eight planets and existing calculations; reference-only prices, gravity tools, comparisons, and alternate destinations are outside this styling request. Awaiting learner retry of the revised appearance before completing the early checkpoint.
+- Verified the styling revision: all 11 existing tests and production build pass; desktop and 390px phone cover/grid/profile layouts inspected without horizontal overflow. Search and booking still work; the profile's holiday anchor retains the selected destination. Browser console has no errors or warnings. No commit yet: early-checkpoint feedback on the revised appearance is pending.

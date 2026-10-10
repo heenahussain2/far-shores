@@ -1,0 +1,9 @@
+/devpost/learner-profile.md
+.env
+.env.*
+!.env.example
+/.claude/skills/
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
