@@ -108,3 +108,5 @@ Form refinement: added a top Cancel control to the shared edit/new destination f
 
 
 Final verification on 2026-10-11: all 34 tests pass outside the sandbox (sandbox temporary-cache access prevents test collection); TypeScript and production build pass. Existing integrated browser evidence and final top-Cancel check cover the reviewed journey. Learner requested moving to the final part after the refinements. Build handoff includes the offline app map.
+
+Shipping follow-up: learner authorized publishing the remaining UI improvements. Reviewed catalogue shortcut, previous/next navigation, active sticky chapters, editorial Best for labels, and pass stamp animation. Production build and all 34 tests pass; prior browser evidence is recorded in IMPROVEMENTS.md. App map updated with the new entry points.

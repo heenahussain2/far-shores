@@ -1,6 +1,7 @@
 import type { Planet } from '../types/planet';
 import { formatDistance, formatJourney } from '../lib/journey';
 import { PlanetImage } from './PlanetImage';
+import { holidayTheme } from '../data/holidayThemes';
 
 export function PlanetCard({ planet, index }: { planet: Planet; index: number }) {
   return <a className={`planet-card world-${planet.id}`} href={`#/planet/${encodeURIComponent(planet.id)}`} aria-label={`Explore ${planet.name}`}>
@@ -9,6 +10,7 @@ export function PlanetCard({ planet, index }: { planet: Planet; index: number })
     <div className="card-body">
       <div className="card-title"><h3>{planet.name}</h3><span className="card-arrow" aria-hidden="true">↗</span></div>
       <p>{planet.description}</p>
+      <div className="card-best-for"><span>Best for</span> {holidayTheme(planet.id)}</div>
       <div className="card-distance"><span>{formatDistance(planet.distanceFromEarthKm)} · APPROX.</span><strong>EXPLORE →</strong></div>
     </div>
   </a>;

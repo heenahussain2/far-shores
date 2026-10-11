@@ -29,3 +29,26 @@
 /* Keep the pass controls above a compact, readable ticket. */
 .pass-page{max-width:1000px;padding:24px 0}.pass-actions{margin-bottom:16px}.pass-controls{display:flex;align-items:center;gap:12px;flex-shrink:0}.pass-controls .primary-button,.pass-controls .secondary-button{padding:13px 18px;gap:14px}.travel-pass{padding:24px 28px;max-height:calc(100svh - 260px);overflow:auto;scrollbar-color:#57545b var(--panel)}.travel-pass h1{font-size:clamp(36px,4.5vw,54px);letter-spacing:-2px;margin:8px 0}.travel-pass .itinerary-destination{margin:14px 0 20px}.travel-pass .itinerary-grid{padding-top:18px;gap:24px}.travel-pass .itinerary-grid h2{font-size:21px;margin:10px 0}.travel-pass .itinerary-grid p{line-height:1.65}.travel-pass .fiction-note{margin-top:20px;padding-top:14px}.travel-pass .risk-warning{margin:12px 0}.pass-download-note{font:10px/1.8 var(--mono);color:var(--subtle);margin-top:14px}.travel-pass .confirmation-stamp{padding:8px 12px;font-size:8px}
 @media(max-width:700px){.pass-actions{flex-wrap:wrap;gap:12px}.pass-actions>.eyebrow{max-width:none;width:100%}.pass-controls{width:100%;justify-content:space-between}.pass-controls .primary-button,.pass-controls .secondary-button{font-size:9px;padding:12px 15px}.travel-pass{padding:22px 20px;max-height:none;overflow:visible}.travel-pass h1{font-size:36px}.travel-pass .itinerary-grid{gap:18px}.travel-pass .itinerary-grid>div{padding-bottom:15px}.pass-download-note{font-size:9px}}
+
+/* Small discoveries and a reading guide that stays within reach. */
+.card-best-for{font:11px/1.7 var(--mono);color:var(--world);margin:10px 0 18px;overflow-wrap:anywhere}
+.card-best-for>span{color:var(--subtle);text-transform:uppercase;font-size:9px;letter-spacing:1px;margin-right:6px}
+.profile-section-nav{position:sticky;top:0;z-index:5;background:#0b0e14;box-shadow:0 8px 18px #0b0e1440}
+.profile-section-nav button{border-bottom:2px solid transparent}
+.profile-section-nav button[aria-current="location"]{color:var(--world);border-bottom-color:var(--world)}
+.profile .profile-chapter,#trip-details{scroll-margin-top:var(--chapter-offset,110px)}
+.world-pagination{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid var(--line);padding:28px 0 48px}
+.world-pagination a{display:flex;flex-direction:column;gap:10px;min-width:0;padding:12px 0}
+.world-pagination a:last-child{text-align:right}
+.world-pagination strong{font-size:clamp(24px,3vw,36px);letter-spacing:-1px;overflow-wrap:anywhere}
+.world-pagination a:hover strong{color:var(--amber)}
+@keyframes pass-stamp-arrive{from{opacity:0;transform:rotate(-14deg) scale(1.2)}to{opacity:1;transform:rotate(-7deg) scale(1)}}
+.travel-pass .confirmation-stamp{animation:pass-stamp-arrive 250ms cubic-bezier(.22,1,.36,1) 120ms both;transform-origin:center}
+@media(max-width:700px){
+  .profile-section-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:20px;padding:12px 0;scrollbar-width:thin;scrollbar-color:var(--subtle) #0b0e14}
+  .profile-section-nav button{flex:0 0 auto;white-space:nowrap}
+  .card-best-for{font-size:10px}
+  .card-best-for>span{display:block;font-size:8px}
+  .world-pagination .eyebrow{font-size:9px;letter-spacing:.6px}
+}
+@media(prefers-reduced-motion:reduce){.travel-pass .confirmation-stamp{animation:none!important}}

@@ -62,6 +62,13 @@ export default function App({ repository }: { repository?: CatalogueRepository }
     setFeedback('');
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
+  function jumpToDestinations(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (!isCatalogue || entry || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const heading = document.getElementById('destination-heading');
+    heading?.focus({ preventScroll: true });
+    heading?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+  }
   async function savePlanet(value: Planet) {
     await catalogue.save(value);
     setBookedTrip(null);
@@ -92,11 +99,11 @@ export default function App({ repository }: { repository?: CatalogueRepository }
   useEffect(() => { document.title = trip ? `${trip.name} travel pass — Far Shores` : planet ? `${planet.name} — Far Shores` : isCatalogue ? 'Destinations — Far Shores' : 'Far Shores — Planetary Travel Guide'; }, [planet, trip, isCatalogue]);
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
-    <header className="site-header"><div className="header-inner"><a href="#/" className="brand" aria-label="Far Shores home">Far <span>Shores</span></a><nav aria-label="Main navigation"><a href="#/destinations" aria-current={isCatalogue ? 'page' : undefined} className="nav-link">Destinations</a><a href="/credits.html" className="nav-link">Field notes</a></nav></div></header>
+    <header className="site-header"><div className="header-inner"><a href="#/" className="brand" aria-label="Far Shores home">Far <span>Shores</span></a><nav aria-label="Main navigation"><a href="#/destinations" onClick={jumpToDestinations} aria-current={isCatalogue ? 'page' : undefined} className="nav-link">Destinations</a><a href="/credits.html" className="nav-link">Field notes</a></nav></div></header>
     <main id="main-content" ref={main} tabIndex={-1}>
       {catalogue.loadError && <div className="storage-notice" role="alert"><p>{catalogue.loadError}</p><button className="secondary-button" onClick={catalogue.retry}>Retry loading</button></div>}
       <p className="save-feedback" role="status">{feedback}</p>
-      <div key={`${route}:${entry ? 'form' : 'view'}`} className="page-content page-enter">{catalogue.loading ? <p className="loading-state" role="status">Opening your atlas…</p> : entry ? <PlanetForm original={entry === 'new' ? undefined : entry} saving={catalogue.saving} onSave={savePlanet} onCancel={cancelForm} /> : isHome ? <LandingCover planets={catalogue.planets} /> : isCatalogue ? <DestinationCatalogue planets={catalogue.planets} query={query} onQuery={setQuery} onAdd={() => openForm()} readOnly={catalogue.readOnly} /> : passId ? (trip ? <TravelPass planet={trip} onClose={closePass} /> : <section className="empty-state"><h1>No booked trip</h1><p>Book a package from the destination details to create a pass for this visit.</p><a className="primary-button" href={passPlanet ? `#/planet/${encodeURIComponent(passPlanet.id)}` : '#/destinations'}>Back to {passPlanet ? 'destination details' : 'destinations'}</a></section>) : planet ? <PlanetProfile key={planet.id} planet={planet} onEdit={() => openForm(planet)} onBook={() => bookTrip(planet)} readOnly={catalogue.readOnly} /> : <section className="empty-state"><h1>Destination not found</h1><p>This horizon isn’t in your catalogue.</p><a className="primary-button" href="#/destinations">All destinations</a></section>}</div>
+      <div key={`${route}:${entry ? 'form' : 'view'}`} className="page-content page-enter">{catalogue.loading ? <p className="loading-state" role="status">Opening your atlas…</p> : entry ? <PlanetForm original={entry === 'new' ? undefined : entry} saving={catalogue.saving} onSave={savePlanet} onCancel={cancelForm} /> : isHome ? <LandingCover planets={catalogue.planets} /> : isCatalogue ? <DestinationCatalogue planets={catalogue.planets} query={query} onQuery={setQuery} onAdd={() => openForm()} readOnly={catalogue.readOnly} /> : passId ? (trip ? <TravelPass planet={trip} onClose={closePass} /> : <section className="empty-state"><h1>No booked trip</h1><p>Book a package from the destination details to create a pass for this visit.</p><a className="primary-button" href={passPlanet ? `#/planet/${encodeURIComponent(passPlanet.id)}` : '#/destinations'}>Back to {passPlanet ? 'destination details' : 'destinations'}</a></section>) : planet ? <PlanetProfile key={planet.id} planet={planet} planets={catalogue.planets} onEdit={() => openForm(planet)} onBook={() => bookTrip(planet)} readOnly={catalogue.readOnly} /> : <section className="empty-state"><h1>Destination not found</h1><p>This horizon isn’t in your catalogue.</p><a className="primary-button" href="#/destinations">All destinations</a></section>}</div>
     </main>
     <footer className="site-footer"><a href="#/" className="footer-brand">FAR SHORES · SEASON 2026 / 27</a><span>REAL WORLDS. IMAGINED HOLIDAYS.</span><a href="/credits.html" className="source-link">Science & image credits ↗</a></footer>
   </>;

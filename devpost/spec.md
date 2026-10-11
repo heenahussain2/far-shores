@@ -237,6 +237,6 @@ Pass layout refinement: Download pass and Close share the top action row. Compac
 - Public source repository: https://github.com/heenahussain2/far-shores
 - Default branch: master. Reviewed app checkpoint: 788199b.
 - Public publication authorized by the learner on 2026-10-11. Learner profile, local credentials, and unrelated curriculum files excluded.
-- Additional uncommitted UI improvements were left intact locally and were not included in this reviewed checkpoint.
+- Follow-up UI improvements authorized for publication: catalogue shortcut, previous/next destinations, active sticky chapter navigation, editorial Best for labels, and reduced-motion-aware pass stamp animation. Verification recorded in IMPROVEMENTS.md.
 - Demo video: pending. Record the working local app; no deployment selected.
 - Devpost submission and exit survey: pending learner completion. Exact form constraints still need checking against the current submission form.
