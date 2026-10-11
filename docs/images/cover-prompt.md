@@ -1,0 +1,7 @@
+# Repository cover
+
+Created with the built-in image generation tool by editing the user's supplied cover. The orbital illustration is decorative and not to scale.
+
+## Final prompt
+
+Edit the supplied image as the target, for a GitHub repository README cover for Far Shores. Preserve the existing 2:1 wide composition, near-black background, enormous bold condensed 'Far' in cream and 'Shores' in warm amber at left, fine orbit lines and softly shaded minimalist planet spheres at right. Keep the exact title Far Shores and the top line 'INTERPLANETARY TRAVEL GUIDE · SEASON 2026 / 27'. Replace the bottom tagline with exactly 'Eight extraordinary worlds. Imagined holidays.' Replace the old Moon/Mars/Venus/Europa/Titan list with these two legible monospaced lines aligned at the same left margin: 'MERCURY · VENUS · EARTH · MARS' and 'JUPITER · SATURN · URANUS · NEPTUNE'. The diagram should have one warm glowing sun plus exactly eight distinct planet spheres: small grey Mercury, golden Venus, blue Earth with subtle green continents, rust Mars, larger tan Jupiter with restrained bands, golden Saturn with a visible elegant tilted ring, pale cyan Uranus, deep blue Neptune. Spread planets aesthetically around thin orbital arcs on the right without overlapping the title or bottom copy. A decorative schematic, not to scale. Preserve the restrained editorial design and generous negative space, crisp type, flat dark background and existing palette. No moons, no extra labels or watermarks. Output a polished high-resolution 2:1 landscape cover.

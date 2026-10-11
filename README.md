@@ -1,5 +1,7 @@
 # Far Shores
 
+![Far Shores — eight extraordinary worlds, imagined holidays. Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.](docs/images/far-shores-cover.png)
+
 A planetary travel guide: explore real planets as imagined holiday destinations.
 
 ## Run locally
