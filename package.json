@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "engines": { "node": "^24.0.0" },
+  "engines": {
+    "node": "^24.0.0"
+  },
   "scripts": {
     "dev": "vite --host localhost --port 5173 --strictPort",
     "build": "tsc --noEmit && vite build",
@@ -11,6 +13,7 @@
     "preview": "vite preview --host localhost --port 5173 --strictPort"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

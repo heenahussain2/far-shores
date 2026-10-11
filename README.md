@@ -46,4 +46,4 @@ Canonical product and technical plans and the build checklist live in `devpost/`
 
 ## Travel pass
 
-Book the package opens a separate confirmation page. Download pass saves a self-contained HTML file you can open in a browser or print. Close returns to that destination’s details. The pass page requires a booking from the details page; booking is temporary and a refresh requires booking again. Downloaded files remain available independently of browser catalogue storage.
+Book the package opens a separate confirmation page. The confirmation keeps the original ticket layout. Download pass saves a PNG capture of just that ticket, including all its contents, to keep, share, or print. Close returns to that destination’s details. The pass page requires a booking from the details page; booking is temporary and a refresh requires booking again. Downloaded files remain available independently of browser catalogue storage.
