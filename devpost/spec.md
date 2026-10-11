@@ -232,3 +232,11 @@ Trace checks directly to `prd.md > Features and Behavior`:
 **Early build checks:** resolve compatible package versions and run the toolchain; verify individual facts and assets with source links; calculate and document rounded reference distances. No scientific data or app implementation has been verified yet. This technical plan is approved and ready for `5-build`.
 
 Pass layout refinement: Download pass and Close share the top action row. Compact desktop ticket sizing fits the viewport; unusually long content scrolls inside a focusable ticket. On phones the content stacks without a fixed height.
+
+## Shipping Links and Status
+- Public source repository: https://github.com/heenahussain2/far-shores
+- Default branch: master. Reviewed app checkpoint: 788199b.
+- Public publication authorized by the learner on 2026-10-11. Learner profile, local credentials, and unrelated curriculum files excluded.
+- Additional uncommitted UI improvements were left intact locally and were not included in this reviewed checkpoint.
+- Demo video: pending. Record the working local app; no deployment selected.
+- Devpost submission and exit survey: pending learner completion. Exact form constraints still need checking against the current submission form.
