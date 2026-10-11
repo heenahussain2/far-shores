@@ -1,9 +1,26 @@
 import { describe, it, expect } from 'vitest';
 import { createDraft, validateDraft, parseSnapshot } from './validation';
 import { seedPlanets } from '../data/planets';
+import { getSights } from '../data/sights';
 
 function minimal() { return { ...createDraft(), name: '  New shore  ', description: ' A quiet place ' }; }
 describe('destination validation', () => {
+  it('supports old catalogues without sights and preserves deliberate clearing', () => {
+    const legacy = { ...seedPlanets[0] }; delete legacy.sights;
+    expect(parseSnapshot({ schemaVersion: 1, planets: [legacy] })).toHaveLength(1);
+    expect(getSights(legacy)).toHaveLength(3);
+    expect(createDraft(legacy).sight1Title).toBe('Caloris Basin');
+    expect(getSights({ ...legacy, sights: [] })).toEqual([]);
+  });
+  it('round-trips editable sights and requires both parts of a supplied card', () => {
+    const draft = { ...minimal(), sight1Title: '  Crystal coast ', sight1Description: ' An imagined view. ' };
+    const result = validateDraft(draft, 'custom');
+    expect(result.errors).toEqual({});
+    expect(result.planet.sights).toEqual([{ title: 'Crystal coast', description: 'An imagined view.' }]);
+    expect(createDraft(result.planet).sight1Title).toBe('Crystal coast');
+    expect(validateDraft({ ...draft, sight1Description: '' }, 'custom').errors.sight1Description).toBeTruthy();
+    expect(() => parseSnapshot({ schemaVersion: 1, planets: [{ ...result.planet, sights: [{ title: 'Broken' }] }] })).toThrow('sights');
+  });
   it('requires only trimmed name and description; blank optional numbers are unknown', () => {
     const result = validateDraft(minimal(), 'unique');
     expect(result.errors).toEqual({});

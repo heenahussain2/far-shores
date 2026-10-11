@@ -5,6 +5,8 @@ status: approved
 
 # Planetary Travel Guide — Technical Spec
 
+Review refinement: Planet optionally includes `sights: { title: string; description: string }[]`. The form offers three pairs, requiring both parts of any supplied card. Existing version-1 snapshots may omit sights; `getSights` supplies initial-planet defaults only for an absent field. Explicit `[]` preserves intentional clearing. New saves include the field. Profile cards show an Unknown empty state. Seed highlights live in `src/data/sights.ts`; factual sources are in CONTENT_SOURCES.md.
+
 ## How This Works, In Plain Language
 React builds the catalogue, profiles, entry forms, and fictional booking reveal from one collection of planet records. TypeScript describes those records so every part of the app agrees on what a planet contains.
 
@@ -33,7 +35,7 @@ Implements `prd.md > The Core Journey`.
 
 Learner accepted React/TypeScript/Vite, plain CSS, and localStorage. Vitest and the detailed module structure are derived implementation choices. No router or global-state library is needed for this small app; use a hash route and React hooks.
 
-Official documentation was checked during planning. Node v24.14.0 and npm 11.21.0 are installed here. Exact package versions are not installed or verified together yet: select compatible stable releases during setup, verify engine requirements, record resolved versions in `package-lock.json`, and use `npm ci` thereafter. Do not claim a tested build before `5-build`.
+Official documentation was checked during planning. Node v24.14.0 and npm 11.21.0 are installed here. Resolved package versions are recorded in `package-lock.json`; the React/TypeScript/Vite stack has passed tests and production builds during `5-build`. Use `npm ci` to reproduce it.
 
 ## Where It Runs and How Someone Tries It
 The application lives at the current project root, alongside existing curriculum material and `devpost/`. Preserve those files when creating app configuration; do not scaffold over the existing folder blindly.
@@ -81,6 +83,8 @@ Files: `src/components/PlanetProfile.tsx`, `PlanetImage.tsx`.
 Implements `prd.md > Read Planet Profiles`.
 Render the image/name/introduction, scientific details, atmosphere, artistic interpretation, edit action, and booking button. Use shared distance/time formatting and the movement/speed notes. PlanetImage handles blank/broken images with a bundled neutral placeholder and meaningful alternative text.
 
+Profile cards also expose packing advice and the survival label/details before booking, using the same saved record and Unknown fallback as the itinerary. Discover your holiday focuses and smoothly scrolls to #profile-details, before the scientific information. Profile chapter sections have labelled headings, dividers, consistent spacing and scroll offsets. Section-navigation buttons focus and scroll to each chapter; reduced-motion preferences use immediate scrolling. Keep these fictional interpretations clearly labelled.
+
 ### Planet Entry Form
 File: `src/components/PlanetForm.tsx`.
 Implements `prd.md > Add and Edit Planets`.
@@ -91,7 +95,7 @@ Save creates or replaces one record by ID. New IDs use `crypto.randomUUID()`. Wr
 ### Holiday Reveal
 File: `src/components/HolidayReveal.tsx`.
 Implements `prd.md > Book and Reveal the Holiday Verdict`.
-One expanded itinerary per viewed planet. Show “Travel booked!”, fictional-trip label, journey estimate, packing advice, and qualitative survival label/sentence. Detect missing trip details through shared utility, not duplicated UI conditions. A missing estimate, blank packing advice, or incomplete survival label/sentence adds the button's risk icon/text and the reveal's exact warning: “Details unknown. Book at your own risk.” Keep known information visible. Repeated booking clicks reuse the same panel; booking is not persisted.
+Booking now opens TravelPass.tsx at #/pass/<id>, gated by an in-memory booked-record snapshot. Direct entry or refresh without that snapshot offers a return to details. Close clears the snapshot and returns focus to Book the package on the originating profile. Download pass uses an escaped standalone HTML document from lib/travelPass.ts, a Blob URL revoked on unmount, and a safe destination-based filename. No runtime service or new dependency. Show “Travel booked!”, fictional-trip label, journey estimate, packing advice, and qualitative survival label/sentence. Detect missing trip details through shared utility, not duplicated UI conditions. A missing estimate, blank packing advice, or incomplete survival label/sentence adds the button's risk icon/text and the reveal's exact warning: “Details unknown. Book at your own risk.” Keep known information visible. Only the latest booked trip is held in memory; saving edits invalidates it. Booking is not persisted; the downloaded pass can be kept.
 
 ### Catalogue Repository
 Files: `src/lib/catalogueRepository.ts`, `localCatalogueRepository.ts`, `src/hooks/useCatalogue.ts`.
@@ -143,7 +147,7 @@ Planet records live in the seed file initially, then in the saved full snapshot 
 ## File Structure
 Planned app files; existing curriculum folders and learning docs are preserved.
 ```text
-skill-practice/
+far-shores/
 ├── .gitignore                     # preserve profile/credential exclusions; add build outputs
 ├── index.html                     # Vite entry
 ├── package.json                   # dev/build/test/preview scripts
@@ -226,3 +230,5 @@ Trace checks directly to `prd.md > Features and Behavior`:
 **Review resolved:** the learner approved the displayed technical plan, including the agent-proposed orbital-radius-gap reference-distance convention. Other agreed estimate behavior stays unchanged.
 
 **Early build checks:** resolve compatible package versions and run the toolchain; verify individual facts and assets with source links; calculate and document rounded reference distances. No scientific data or app implementation has been verified yet. This technical plan is approved and ready for `5-build`.
+
+Pass layout refinement: Download pass and Close share the top action row. Compact desktop ticket sizing fits the viewport; unusually long content scrolls inside a focusable ticket. On phones the content stacks without a fixed height.

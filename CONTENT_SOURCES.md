@@ -55,3 +55,6 @@ NASA's [planet overview](https://science.nasa.gov/solar-system/planets/) provide
 | unknown.svg | Original project artwork | Neutral placeholder; no scientific image implied. |
 
 Media use checked against [NASA image/media guidance](https://www.nasa.gov/nasa-brand-center/images-and-media/). NASA identifiers/logos are not used in the brand. The UI's orbital icon and favicon are original SVG artwork. No franchise assets, external fonts, or generated planet photographs are used.
+
+## Sight highlight cards
+Original visitor copy in src/data/sights.ts, checked 2026-10-11 against NASA fact pages: [Mercury](https://science.nasa.gov/mercury/facts/), [Venus](https://science.nasa.gov/venus/venus-facts/), [Earth](https://science.nasa.gov/earth/facts/), [Mars](https://science.nasa.gov/mars/facts/), [Jupiter](https://science.nasa.gov/jupiter/jupiter-facts/), [Saturn](https://science.nasa.gov/saturn/facts/), [Uranus](https://science.nasa.gov/uranus/facts/), [Neptune](https://science.nasa.gov/neptune/neptune-facts/). Surface features, rings, storms and atmospheric traits follow these sources; imagined viewing arrangements are fictional. Venus surface views explicitly use radar; giant planets are observed from a spacecraft.

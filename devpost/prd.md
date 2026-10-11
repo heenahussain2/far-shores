@@ -5,6 +5,8 @@ status: approved
 
 # Planetary Travel Guide — Product Requirements
 
+Review refinement: profiles include “What you’ll see” with numbered title/description cards. Each initial planet supplies three highlights; add/edit supports up to three optional cards. Missing custom highlights show Unknown and do not affect the trip warning.
+
 A personal astronomy guide for exploring planets as fictional holiday destinations and maintaining the catalogue as you learn.
 Source: `scope.md > Who It's For`, `The Unique Kernel`, and `The POC Boundary`.
 
@@ -36,6 +38,7 @@ Source: `scope.md > The Core Loop` and `What "Working" Looks Like`.
 - Scientific details include approximate distance from Earth, approximate journey time, and distance from its Sun/host star.
 - The imaginative living-there section is labelled as artistic interpretation; factual conditions are distinguished from fictional travel claims.
 - An edit action exposes the editable information. A return action leads to the catalogue.
+- Packing advice and the survival label/details are visible in profile cards before booking, with Unknown for missing values. Discover your holiday scrolls to the beginning of the details, above the scientific information. Numbered sections and a section-navigation row separate facts, life/atmosphere, sights, and packing/survival. Booking still reveals the fictional itinerary.
 
 ### Planet Entry Form
 - Add and edit are form surfaces associated with the catalogue/profile, not separate product areas.
@@ -44,7 +47,7 @@ Source: `scope.md > The Core Loop` and `What "Working" Looks Like`.
 - Proposed review default: explicit “Save” and “Cancel” actions. Save updates the card and profile; Cancel discards uncommitted changes.
 
 ### Holiday Reveal
-- A result on the profile after booking, containing “Travel booked!”, journey estimate, things to bring, and survival outlook.
+- A separate pass page opens only after booking, containing “Travel booked!”, journey estimate, things to bring, and survival outlook. Download pass saves a standalone printable HTML pass; Close returns to the destination details.
 - Clear fictional-trip label. No payment, booking account, or real reservation is created.
 - Incomplete destinations remain bookable with the warning described below.
 
@@ -106,7 +109,7 @@ Source: `scope.md > The Unique Kernel`.
 - Example tone only: “Survival outlook: suit-dependent. Keep your habitat sealed and your return ticket handy.” Final factual content is verified during content preparation.
 - If journey, packing, or survival information is missing, show a risk icon on the booking button, with an accessible text warning, and “Details unknown. Book at your own risk.” in the reveal. Known details still appear; missing ones are marked unknown.
 - The risk icon indicates missing information, not that other destinations are physically safe.
-- Booking does not create a saved reservation. Proposed review default: repeated clicks display the same reveal without creating duplicate confirmations.
+- Booking does not create a saved reservation. The current booking is temporary for this visit; Close clears it. A direct pass URL or refresh without an active booking offers a return to details. Saving an edit clears any previous pass.
 
 Acceptance criteria:
 - [ ] Booking a complete initial destination reveals all three trip sections and “Travel booked!” with a fictional-trip label.

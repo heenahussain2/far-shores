@@ -1,5 +1,6 @@
 import type { Planet } from '../types/planet';
 import { DEFAULT_CRUISE_SPEED_KMH } from '../lib/journey';
+import { seedSights } from './sights';
 
 const AU_KM = 149_597_870.7;
 const EARTH_ORBIT_AU = 1.00000261;
@@ -83,6 +84,7 @@ const records = [
 
 export const seedPlanets: Planet[] = records.map(({ orbitAu, ...record }) => ({
   ...record,
+  sights: seedSights[record.id].map(sight => ({ ...sight })),
   imageUrl: `/images/planets/${record.id}.jpg`,
   distanceFromEarthKm: Math.round(Math.abs(orbitAu - EARTH_ORBIT_AU) * AU_KM / 1_000_000) * 1_000_000,
   distanceFromStarKm: Math.round(orbitAu * AU_KM / 1_000_000) * 1_000_000,

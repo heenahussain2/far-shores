@@ -8,6 +8,7 @@ describe('simplified journeys', () => {
     expect(journeyHours(0, 100_000)).toBe(0);
     expect(formatJourney({ distanceFromEarthKm: 0, cruiseSpeedKmh: 100_000 })).toBe('0 hours · staycation');
     expect(formatJourney({ distanceFromEarthKm: 78_000_000, cruiseSpeedKmh: 100_000 })).toBe('≈ 32.5 days');
+    expect(formatJourney({ distanceFromEarthKm: 4_800_000, cruiseSpeedKmh: 200_000 })).toBe('≈ 1 day');
   });
   it.each([[null, 100_000], [10, null], [-1, 10], [10, 0], [10, -1], [NaN, 10], [10, Infinity], [Number.MAX_VALUE, Number.MIN_VALUE]])('keeps invalid distance/speed unknown (%s, %s)', (distance, speed) => {
     expect(journeyHours(distance, speed)).toBeNull();

@@ -10,6 +10,9 @@ export function journeyHours(distance: number | null, speed: number | null): num
 }
 
 const number = new Intl.NumberFormat('en', { maximumFractionDigits: 1 });
+function duration(value: number, unit: string): string {
+  return `≈ ${number.format(value)} ${unit}${Number(value.toFixed(1)) === 1 ? '' : 's'}`;
+}
 
 export function formatDistance(km: number | null): string {
   if (km === null || !Number.isFinite(km) || km < 0) return 'Unknown';
@@ -22,10 +25,10 @@ export function formatJourney(planet: Pick<Planet, 'distanceFromEarthKm' | 'crui
   const hours = journeyHours(planet.distanceFromEarthKm, planet.cruiseSpeedKmh);
   if (hours === null) return 'Unknown';
   if (hours === 0) return '0 hours · staycation';
-  if (hours < 1) return hours * 60 < 0.1 ? 'Less than 0.1 minutes' : `≈ ${number.format(hours * 60)} minutes`;
-  if (hours < 24) return `≈ ${number.format(hours)} hours`;
-  if (hours < 24 * 365.25) return `≈ ${number.format(hours / 24)} days`;
-  return `≈ ${number.format(hours / (24 * 365.25))} years`;
+  if (hours < 1) return hours * 60 < 0.1 ? 'Less than 0.1 minutes' : duration(hours * 60, 'minute');
+  if (hours < 24) return duration(hours, 'hour');
+  if (hours < 24 * 365.25) return duration(hours / 24, 'day');
+  return duration(hours / (24 * 365.25), 'year');
 }
 
 export function hasMissingTripDetails(planet: Planet): boolean {

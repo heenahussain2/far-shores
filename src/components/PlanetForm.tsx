@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Planet } from '../types/planet';
-import { createDraft, validateDraft, type Draft, type FieldErrors } from '../lib/validation';
+import { createDraft, validateDraft, sightFields, type Draft, type FieldErrors } from '../lib/validation';
 import { formatJourney } from '../lib/journey';
 
 type Props = { original?: Planet; saving: boolean; onSave: (planet: Planet) => Promise<void>; onCancel: () => void };
@@ -14,6 +14,7 @@ const fields: { key: keyof Draft; label: string; hint?: string; multiline?: bool
   { key: 'cruiseSpeedKmh', label: 'Cruising speed (km/h)', hint: 'Fictional estimate · default 100,000 km/h', numeric: true },
   { key: 'atmosphere', label: 'Atmosphere', multiline: true },
   { key: 'livingThere', label: 'Living there', hint: 'Artistic interpretation', multiline: true },
+  ...sightFields.map((key, index) => ({ key, label: `Sight ${Math.floor(index / 2) + 1} ${index % 2 === 0 ? 'title' : 'description'}`, hint: 'What you’ll see · optional; provide both title and description or leave both blank.', multiline: index % 2 !== 0 })),
   { key: 'thingsToBring', label: 'Things to bring', multiline: true },
   { key: 'survivalLabel', label: 'Survival outlook', hint: 'A short, qualitative verdict' },
   { key: 'survivalDescription', label: 'Survival details', multiline: true },
@@ -38,7 +39,7 @@ export function PlanetForm({ original, saving, onSave, onCancel }: Props) {
     catch (error) { setSaveError(error instanceof Error ? error.message : 'Could not save. Your draft has been kept; try again.'); }
   }
   return <section className="entry-page" aria-labelledby="entry-heading">
-    <p className="eyebrow">YOUR PERSONAL ATLAS / {original ? 'EDIT DESTINATION' : 'NEW DESTINATION'}</p>
+    <div className="entry-topbar"><p className="eyebrow">YOUR PERSONAL ATLAS / {original ? 'EDIT DESTINATION' : 'NEW DESTINATION'}</p><button className="secondary-button" type="button" disabled={saving} onClick={onCancel}>Cancel <span aria-hidden="true">×</span></button></div>
     <h1 id="entry-heading">{original ? 'Revise your shore.' : 'A new horizon.'}</h1>
     <p className="entry-description">Start with a name and description. Leave anything you haven’t researched blank—it will appear as Unknown.</p>
     <form ref={form} onSubmit={submit} noValidate aria-busy={saving}>
