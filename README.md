@@ -42,6 +42,12 @@ Images may use HTTP(S) URLs or a blank field for the placeholder. Unchanged bund
 
 See [CONTENT_SOURCES.md](CONTENT_SOURCES.md) for factual sources, distance conventions, and image credits. Initial images are bundled; ordinary use needs no runtime astronomy service, account, or API key. `scripts/download-assets.ps1` can re-download the eight NASA images if needed. All holiday scenes, packing briefs, and survival copy are artistic interpretation, not real travel guidance.
 
+## License
+
+Original project code and documentation are available under the [MIT License](LICENSE).
+Third-party images and dependencies retain their respective licenses and usage terms;
+see [CONTENT_SOURCES.md](CONTENT_SOURCES.md) for bundled image credits and source terms.
+
 ## Project notes
 
 Canonical product and technical plans and the build checklist live in `devpost/`. The personal learner profile and local environment files are ignored by Git. Existing curriculum folders are preserved separately from the app in `src/`.
